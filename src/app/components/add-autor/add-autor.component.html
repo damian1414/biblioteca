@@ -1,0 +1,35 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="autor.name"
+          name="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Document</label>
+        <input
+          class="form-control"
+          id="document"
+          required
+          [(ngModel)]="autor.document"
+          name="document"
+        />
+      </div>
+
+      <button (click)="saveAutor()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newAutor()">Add</button>
+    </div>
+  </div>
+</div>
