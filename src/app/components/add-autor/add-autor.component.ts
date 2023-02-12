@@ -5,7 +5,7 @@ import { AutorService } from 'src/app/services/autor.service';
 
 @Component({
   selector: 'app-add-autor',
-  templateUrl: './add-autor.component.html',
+  templateUrl:'./add-autor.component.html',
   styleUrls: ['./add-autor.component.css']
 })
 export class AddAutorComponent implements OnInit {
@@ -35,11 +35,9 @@ export class AddAutorComponent implements OnInit {
       error:(e) => console.error(e)
     })
   }
-
   newAutor():void {
     this.submitted = false;
     this.autor = {
-      id:0,
       name:'',
       document:0
     };

@@ -1,25 +1,7 @@
 <div class="list row">
-  <div class="col-md-8">
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search by title"
-        [(ngModel)]="autorName"
-      />
-      <div class="input-group-append">
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          (click)="searchName()"
-        >
-          Search
-        </button>
-      </div>
-    </div>
-  </div>
+
   <div class="col-md-6">
-    <h4>Tutorials List</h4>
+    <h4>Autores</h4>
     <ul class="list-group">
       <li
         class="list-group-item"
@@ -31,9 +13,6 @@
       </li>
     </ul>
 
-    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllAutors()">
-      Remove All
-    </button>
   </div>
   <div class="col-md-6">
     <app-autor-details

@@ -18,17 +18,17 @@
         <input
           class="form-control"
           id="document"
-          required
+          required = true
           [(ngModel)]="autor.document"
           name="document"
         />
       </div>
 
-      <button (click)="saveAutor()" class="btn btn-success">Submit</button>
+      <button type="submit" (click)="saveAutor()" class="btn btn-success">Submit</button>
     </div>
 
     <div *ngIf="submitted">
-      <h4>Tutorial was submitted successfully!</h4>
+      <h4>Autor Create</h4>
       <button class="btn btn-success" (click)="newAutor()">Add</button>
     </div>
   </div>

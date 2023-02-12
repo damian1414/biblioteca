@@ -16,6 +16,7 @@ export class AutorsListComponent implements OnInit {
   constructor(private autorService:AutorService) { }
 
   ngOnInit(): void {
+    this.getAutors();
   }
 
   getAutors(): void {
@@ -40,29 +41,5 @@ export class AutorsListComponent implements OnInit {
     this.currentIndex = index;
   }
 
-  removeAllAutors(): void {
-    this.autorService.deleteAll()
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.refreshList();
-        },
-        error: (e) => console.error(e)
-      });
-  }
-
-  searchName(): void {
-    this.currentAutor = {};
-    this.currentIndex = -1;
-
-    this.autorService.findByAutor(this.autorName)
-      .subscribe({
-        next: (data) => {
-          this.autors = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-  }
 
 }

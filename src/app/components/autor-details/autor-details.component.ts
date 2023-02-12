@@ -79,7 +79,7 @@ export class AutorDetailsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.router.navigate(['/tutorials']);
+          this.router.navigate(['/autores']);
         },
         error: (e) => console.error(e)
       })

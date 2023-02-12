@@ -1,34 +1,30 @@
 <div *ngIf="viewMode; else editable">
   <div *ngIf="currentAutor.id">
-    <h4>Tutorial</h4>
+    <h4>Autor</h4>
     <div>
-      <label><strong>Title:</strong></label> {{ currentAutor.name }}
+      <label><strong>Name:</strong></label> {{ currentAutor.name }}
     </div>
     <div>
-      <label><strong>Description:</strong></label>
+      <label><strong>Document:</strong></label>
       {{ currentAutor.document }}
     </div>
 
     <a
-      class="badge badge-warning"
-      routerLink="/tutorials/{{ currentAutor.id }}"
+
+      routerLink="/autores/{{ currentAutor.id }}"
     >
       Edit
     </a>
   </div>
 
-  <div *ngIf="!currentAutor">
-    <br />
-    <p>Please click on a Tutorial...</p>
-  </div>
 </div>
 
 <ng-template #editable>
   <div *ngIf="currentAutor.id" class="edit-form">
-    <h4>Tutorial</h4>
+    <h4>Biblioteca</h4>
     <form>
       <div class="form-group">
-        <label for="name">Title</label>
+        <label for="name">Autor</label>
         <input
           type="text"
           class="form-control"
@@ -52,13 +48,14 @@
     </form>
 
 
-    <button class="badge badge-danger mr-2" (click)="deleteAutor()">
+    <button class="badge badge-danger mr-2" (click)="deleteAutor()"  style="background-color: red;">
       Delete
     </button>
 
     <button
       type="submit"
       class="badge badge-success mb-2"
+      style="background-color: blue;"
       (click)="updateAutor()"
     >
       Update
@@ -68,6 +65,6 @@
 
   <div *ngIf="!currentAutor.id">
     <br />
-    <p>Cannot access this Tutorial...</p>
+    <p>Acceso</p>
   </div>
 </ng-template>

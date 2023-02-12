@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Autor } from '../models/autor.model';
 
-const baseUrl = 'http://localhost:8080/api/tutorials';
+const baseUrl = 'http://localhost:8020/api/autor';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,23 +22,15 @@ export class AutorService {
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(`${baseUrl}/createAutor`, data);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.put(`${baseUrl}`, data);
   }
 
   delete(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
-  }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
-  }
-
-  findByAutor(name: any): Observable<Autor[]> {
-    return this.http.get<Autor[]>(`${baseUrl}?name=${name}`);
   }
 
 }
