@@ -1,17 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { BookService } from 'src/app/services/book.service';
 import { Book } from 'src/app/models/book.model';
 import { Autor } from 'src/app/models/autor.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AutorService } from 'src/app/services/autor.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector:'app-book-details',
   templateUrl:'./book-details.component.html',
   styleUrls: ['./book-details.component.css']
 })
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsComponent  {
+
+
 
   autors?: Autor[];
   autorSelec?:Autor;
@@ -31,13 +32,20 @@ export class BookDetailsComponent implements OnInit {
     idAutor: this.idAutor
   };
 
-  message = '';
-
+  @ViewChild('teams') teams!: ElementRef;
   constructor(private bookService: BookService,
     private route: ActivatedRoute,
     private router: Router,
-    private autorService:AutorService
+    private autorService:AutorService,
   ) { }
+
+  message = '';
+
+  idAut: any = '';
+	changed(event:any) {
+    this.idAut = event.target.value;
+    this.getAutor(this.idAut);
+	}
 
   ngOnInit(): void {
     if (!this.viewMode) {
@@ -59,30 +67,11 @@ export class BookDetailsComponent implements OnInit {
       });
   }
 
-  updatePublished(status: boolean): void {
-    const data = {
-      title: this.currentBook.title,
-      autor: this.currentBook.idAutor
-    };
-
-    this.message = '';
-
-    this.bookService.update(this.currentBook.id, data)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.message = res.message ? res.message : 'Book actualizado correctamente';
-        },
-        error: (e) => console.error(e)
-      });
-  }
 
   updateBook(): void {
     this.message = '';
-    //console.log("SIRVEN");
-    //console.log(this.autorSelec?.id);
-    //this.currentBook.idAutor = this.autorSelec;
-    console.log("ESSSS"+ this.selectedObject?.id);
+    this.currentBook.idAutor = this.autorEnv;
+    console.log("OBJETCT"+ this.autorEnv);
     this.bookService.update(this.currentBook.id, this.currentBook)
       .subscribe({
         next: (res) => {
@@ -110,6 +99,17 @@ export class BookDetailsComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.autors = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  getAutor(id: number): void {
+    this.autorService.get(id)
+      .subscribe({
+        next: (data) => {
+          this.autorEnv = data;
           console.log(data);
         },
         error: (e) => console.error(e)

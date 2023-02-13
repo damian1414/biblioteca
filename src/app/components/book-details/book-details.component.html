@@ -35,32 +35,18 @@
       </div>
       <div class="form-group">
         <label for="name">Autor</label>
-        <select class="form-control">
+        <select  (change)="changed($event)">
           <option
             *ngFor="let opt of autors"
             [selected]="opt.document === currentBook.idAutor?.document "
-            [value]="opt"
+            [value]="opt.id"
           >
             {{ opt.name }}
           </option>
         </select>
-
-
-
       </div>
 
-      <select [(ngModel)]="selectedObject" name="selectedObject">
-        <option
-             *ngFor="let autor of autors"
-             [selected]="autor.id === currentBook.idAutor?.document "
-          >
-          <option
-             *ngFor="let autor of autors"
-             [selected]="autor"
-          >
-             {{autor.name}}
-        </option>
-      </select>
+
 
     </form>
 
