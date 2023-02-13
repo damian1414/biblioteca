@@ -68,7 +68,7 @@ export class AutorDetailsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.message = res.message ? res.message : 'This tutorial was updated successfully!';
+          this.message = res.message ? res.message : 'Autor actualizado correctamente';
         },
         error: (e) => console.error(e)
       });

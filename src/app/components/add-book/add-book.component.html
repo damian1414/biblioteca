@@ -1,0 +1,35 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="book.title"
+          name="title"
+        />
+        <label>Autor</label>
+        <select [(ngModel)]="selectedObject" name="selectedObject">
+          <option *ngFor="let autor of autorEnv"
+               [ngValue]="autor">
+               {{autor.name}}
+           </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" (click)="saveBook()" class="btn btn-success">Submit</button>
+      </div>
+
+
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Autor Create</h4>
+      <button class="btn btn-success" (click)="newBook()">Add</button>
+    </div>
+  </div>
+</div>
